@@ -1,0 +1,13 @@
+.DS_Store
+*.aux
+*.dvi
+*.fdb_latexmk
+*.fls
+*.log
+*.pdf
+*.bbl
+*.blg
+*.out
+*.synctex.gz
+references
+.vscode

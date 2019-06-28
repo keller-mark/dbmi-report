@@ -1,0 +1,13 @@
+before_install:
+- sudo apt-get update
+- sudo apt-get install -y latexmk texlive-latex-extra inkscape
+script:
+- latexmk -pdf -bibtex
+- mkdir -p dist
+- mv main.pdf dist/main.pdf
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $github_token
+  local-dir: dist
+  keep-history: true
