@@ -1,5 +1,6 @@
 language: generic
 before_install:
+- apt-get update
 - apt-get install -y latexmk texlive-latex-extra inkscape
 script:
 - latexmk -pdf -bibtex
