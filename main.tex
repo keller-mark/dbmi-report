@@ -26,7 +26,6 @@ The NIH-sponsored Human Biomolecular Atlas Program (HuBMAP) is using this model 
 HuBMAP aims to develop spatial mappings of cells and molecules, with new coordinate frameworks that allow querying across levels, from organ to tissue to cell to molecule.
 Learning from the struggles of past biomedical and genomic data collection efforts that have developed data portals and visualization tools as afterthoughts, HuBMAP was conceived with the HuBMAP Integration, Visualization, and Engagement (HIVE) group responsible for articulating data access needs from the start~\cite{snyder2019mapping}.
 
-
 % Importance...
 
 % Current questions
@@ -40,6 +39,24 @@ Learning from the struggles of past biomedical and genomic data collection effor
 Vitessce...
 
 \section{Methods}
+
+% Cartographic technologies
+Vitessce performs spatial visualization by leveraging libraries developed with a focus on cartography and mapping.
+The open source Uber-maintained Deck.gl JavaScript library is powerful because it implements reactive updates that are similar to those used by React.
+Deck.gl performs diffing on the data passed to each view layer to detect updates and invalidate the current state, just as React performs diffing on the virtual DOM in response to data changes to determine when to update the browser's DOM.
+
+Often, it makes sense to render contextual elements in the DOM rather than in a visualization layer, whether for performance reasons or to keep the visualization clean to in preparation for downloading.
+To synchronize HTML element positions with positions of data points in visualization layers, we perform projections from the data coordinate space to the browser coordinate space.
+
+% Component re-use
+The development of Vitessce has focused on separating logic into components that can operate independently to enable them to be imported and re-used by other projects, including HuBMAP data portals and tissue viewers.
+To achieve this goal, Vitessce does not maintain a global state that is used by child components.
+Instead, there is an event-based mechanism, with wrapper subscriber components that pass state down to children along with publisher update functions.
+This allows external usage of components to be done by setting up custom publishing and subscription wrappers rather than using the Vitessce-specific wrappers.
+A drawback of this approach is that events are asynchronous, so implementing a history mechanism may prove to be difficult, as there is no one source of truth for events.
+
+% Cell selection, rectangle and polygon
+
 
 \section{Conclusions}
 % Brief summary
