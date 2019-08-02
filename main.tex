@@ -60,10 +60,42 @@ Learning from the struggles of past biomedical and genomic data collection effor
 
 
 \subsection{Contributions}
-% Introduction to Vitessce
-Vitessce...
+My work this summer focused on implementing features to support cell selection, cell set management, and linked plot hover events, as well as fixing miscellaneous bugs and ``tech debt''.
+
+% Cell selection, rectangle and polygon
+
+% Cell set management (and set management in general, with independent utility functions)
+
+% Cell set manager iteration 1: flat
+
+% Cell set manager iteration 2: hierarchical
+
+% Set operations
+
+% Linked hover
+I added support for linked cursor hover events across plots to be able to show contextual information when a user hovers on a particular cell.
+On plots peripheral to the currently-hovered plot, emphasis will be placed on the cell over which the cursor rests in the hovered plot.
+This allows a user to quickly identify the location of a particular cell across the different visualizations: scatterplots, spatial views, and gene expression heatmaps.
+
+% Tooltips
+In addition to highlighting the same cell across plots, hover events allow us to show tooltips containing more information about the cell of interest.
+A tooltip is a message positioned near the mouse in a graphical user interface.
+In the context of Vitessce, tooltips may contain a cell's ID or list the names of the clusters and subclusters to which it belongs.
+To ensure that tooltips do not overflow a particular plot component's boundaries, I implemented collision detection to be able to flip the position of a tooltip relative to the cursor when approaching the edge of a plot.
+
+% Tech debt
+% - React hooks
+% - CSS -> SCSS
+% - More tests
 
 \section{Methods}
+% Web-based tools and React
+While end users typically do not need to think about the particular technology used to implement a visualization tool, it is something I thought about this summer.
+Web technologies currently provide a good balance of accessibility, performance, and development experience for visualization, and will continue to do so in the near future.
+Web browsers support time-tested visualization technologies such as SVG, WebGL, and the canvas element, while improving the development experience with recent standards like WebAssembly and modern JavaScript language features.
+The community around open-source JavaScript libraries is large and very active.
+Vitessce is implemented using the React JavaScript framework originally developed for Facebook but now distributed as open source (\url{https://reactjs.org}).
+React is a framework that simplifies the development of modular, component-based web applications.
 
 % Cartographic technologies
 Vitessce performs spatial visualization by leveraging libraries developed with a focus on cartography and mapping.
@@ -73,30 +105,12 @@ Deck.gl performs diffing on the data passed to each view layer to detect updates
 Often, it makes sense to render contextual elements in the DOM rather than in a visualization layer, whether for performance reasons or to keep the visualization clean to in preparation for downloading.
 To synchronize HTML element positions with positions of data points in visualization layers, we perform projections from the data coordinate space to the browser coordinate space.
 
-% Linked cell hover
-
-% Tooltips
-
 % Component re-use
 The development of Vitessce has focused on separating logic into components that can operate independently to enable them to be imported and re-used by other projects, including HuBMAP data portals and tissue viewers.
 To achieve this goal, Vitessce does not maintain a global state that is used by child components.
 Instead, there is an event-based mechanism, with wrapper subscriber components that pass state down to children along with publisher update functions.
 This allows external usage of components to be done by setting up custom publishing and subscription wrappers rather than using the Vitessce-specific wrappers.
 A drawback of this approach is that events are asynchronous, so implementing a history mechanism may prove to be difficult, as there is no one source of truth for events.
-
-% Cell selection, rectangle and polygon
-
-% Cell set management (and set management in general, with independent utility functions)
-
-% Cell set hierarchy
-
-% Set operations
-
-
-% Tech debt
-% - React hooks
-% - CSS -> SCSS
-% - 
 
 
 \section{Conclusions}
