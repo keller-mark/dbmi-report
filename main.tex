@@ -104,6 +104,7 @@ Deck.gl performs diffing on the data passed to each view layer to detect updates
 
 Often, it makes sense to render contextual elements in the DOM rather than in a visualization layer, whether for performance reasons or to keep the visualization clean to in preparation for downloading.
 To synchronize HTML element positions with positions of data points in visualization layers, we perform projections from the data coordinate space to the browser coordinate space.
+This is how I chose to implement the cell-hover emphasis and tooltip functionalities.
 
 % Component re-use
 The development of Vitessce has focused on separating logic into components that can operate independently to enable them to be imported and re-used by other projects, including HuBMAP data portals and tissue viewers.
