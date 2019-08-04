@@ -62,12 +62,34 @@ Several commercial tools are available or have been announced, including those f
 My work this summer focused on implementing features to support cell selection, cell set management, and linked plot hover events, as well as fixing miscellaneous bugs and ``tech debt''.
 
 % Cell selection, rectangle and polygon
+When analyzing clusters of cells and molecules, users may need to make a selection of plot elements to create a set of cells or molecules that fall within a particular area of the plot.
+Prior to this summer, a rectangle selection tool had already been implemented in Vitessce.
+However, clusters are not typically rectangle-shaped and spatial data of interest can be of any shape.
+To address this, one of my first tasks was to develop a polygon selection tool, allowing a user to select points to use as polygon vertices to create a boundary around a potentially irregularly shaped set of cells or other items.
+In developing this tool, I used \texttt{turf} and \texttt{nebula.gl}, JavaScript libraries containing utilities for working with geospatial data.
+To integrate these with the Vitessce spatial and scatterplot components, heavy customization of the selection code provided by \texttt{nebula.gl} was required to ensure that the interface was consistent with the rectangular selection tool.
+Additionally, using \texttt{nebula.gl} forced us to upgrade the version of one of its peer dependencies, \texttt{deck.gl}, which illuminated bugs that we reported and were quickly fixed by the \texttt{deck.gl} maintainers.
+This was my first time reporting bugs in open source software and interacting with external maintainers to help with the bug fix process.
 
 % Cell set management (and set management in general, with independent utility functions)
+Once cell sets have been selected, either via one of the selection tools or as a representation of members of clusters resulting from a clustering algorithm, it is useful to be able to organize and update them.
+The second main focus of my summer was building a cell set management component to enable users to organize cell sets.
+While the development of this component was implemented with cell sets in mind, the component is not specific to cells, and supports sets of any type of item, for example genes or molecules.
 
 % Cell set manager iteration 1: flat
+The first iteration of the cell set component allowed users to store sets resulting from interactions with the rectangle and polygon selection tools.
+This component supported the operations of naming and renaming sets, viewing set size, and deleting sets.
+Additionally, I implemented a feature to store saved sets to the user's web browser to allow them to return to a previous state.
+To enable sharing and long-term saving, I implemented features to import and export sets from a JSON file.
 
 % Cell set manager iteration 2: hierarchical
+While the first iteration of the cell set manager component was useful, through our evaluation of its functionality, we realized that it would be necessary to allow hierarchical organization of sets.
+A hierarchy can support organization of sets and subsets, particularly those representing clusters and subclusters at multiple levels of nesting.
+This prompted a second iteration of the component, mostly rewriting the code but learning from the flat first implementation.
+To display the tree of sets, I explored multiple open source JavaScript UI libraries containing tree layout components: \texttt{ant-design}, \texttt{blueprint}, \texttt{atlaskit tree}.
+I ultimately chose to use \texttt{ant-design} because it was the only tree component supporting checking and dragging tree nodes.
+As a bonus, the library comes with additional UI components including tabs and popups, and is widely used so will likely continue to be supported for an extended period of time.
+
 
 % Set operations
 
@@ -117,7 +139,7 @@ A drawback of this approach is that events are asynchronous, so implementing a h
 % Brief summary
 Conclusions here...
 
-% HuBMAP conference experience
+% Questions that Vitessce can potentially answer
 
 % Future directions
 % - more customization options
@@ -127,7 +149,13 @@ Conclusions here...
 % - more interactive heatmap
 Future directions here...
 
+\subsection{Reflection}
 
+% What I got out of this summer
+% - HuBMAP conference experience
+% - more team-based research and software development
+% - a focus on visualization
+% - grad school application process
 
 
 
