@@ -77,6 +77,9 @@ Once cell sets have been selected, either via one of the selection tools or as a
 The second main focus of my summer was building a cell set management component to enable users to organize cell sets.
 While the development of this component was implemented with cell sets in mind, the component is not specific to cells, and supports sets of any type of item, for example genes or molecules.
 
+% Cell set manager mock ups
+
+
 % Cell set manager iteration 1: flat
 The first iteration of the cell set component allowed users to store sets resulting from interactions with the rectangle and polygon selection tools.
 This component supported the operations of naming and renaming sets, viewing set size, and deleting sets.
@@ -96,7 +99,7 @@ In developing the hierarchical cell set manager, I first developed tree and tree
 Then, I added UI features that were present in the flat cell set manager, including renaming and deleting sets.
 Next, I connected the dragging functionality provided by the tree component to the internal tree representation.
 I implemented updated import and export functionalities supporting the hierarchical representation of sets, requiring me to modify the flat import/export JSON schema.
-To allow coloring of sets, I added a color picker to each tree node, triggering an event which updates the scatterplot and spatial plots upon change.
+To allow coloring of sets, I added a color picker to each tree node, triggering an event which updates the scatterplot and spatial plots upon color change.
 
 Cell sets can be viewed using a ``view'' popup menu and choosing the current set or a particular level of its descendants.
 This menu is dynamic to accommodate tree nodes at different levels.
@@ -131,12 +134,12 @@ To ensure that tooltips do not overflow a particular plot component's boundaries
 Along with the development of individual features for Vitessce, I also helped to reduce tech debt and streamline some aspects of the code base.
 This included adhering to the recent additions to the React library documentation regarding the implementation of new components as JavaScript functions rather than JavaScript classes.
 However, because pure JavaScript functions do not allow for the storage of component state variables (as classes do), to ``hook into'' React's state functionality, usage of additional functions called ``hooks'' is necessary.
-React hooks can make code more readable by allowing code blocks corresponding to a particular task to be grouped together, while in class-based components required separation of code based on component lifecycle events.
+React hooks can make code more readable by allowing code blocks corresponding to a particular task to be grouped together, while class-based components require separation of code based on component lifecycle events.
 % - CSS -> SCSS
-I migrated our code for styling Vitessce from CSS to Sass (\url{http://sass-lang.com}), allowing us to leverage CSS preprocessing for nesting styles, computed variables, and style re-use via mixins.
+I migrated our code for styling Vitessce from CSS to Sass (\url{http://sass-lang.com}), allowing us to leverage CSS preprocessing for nesting styles, computed variables, and style reuse via mixins.
 % - More tests
 In the development of the cell set manager, I wrote unit tests for each of its functions, as well as tests for the import/export schema validation.
-These updates will help future developers to add or update functionality in Vitessce.
+These updates are invisible to Vitessce users but will help future developers to add or update functionality in Vitessce.
 
 \section{Methods}
 % Web-based tools and React
@@ -162,7 +165,6 @@ To achieve this goal, Vitessce does not maintain a global state that is used by 
 Instead, there is an event-based mechanism, with wrapper subscriber components that pass state down to children along with publisher update functions.
 This allows external usage of components to be done by setting up custom publishing and subscription wrappers rather than using the Vitessce-specific wrappers.
 A drawback of this approach is that events are asynchronous, so implementing a history mechanism may prove to be difficult, as there is no one source of truth for events.
-
 
 \section{Conclusions}
 % Brief summary
