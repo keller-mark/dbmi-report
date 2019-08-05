@@ -41,7 +41,7 @@ In some tissues, it is likely that cells located close to each other are of the 
 Spatial information can be visualized as images or as points in a spatial coordinate system, or overlapping layers of different data types aligned to the same coordinate system.
 
 % Introducing Vitessce
-Vitessce is a web-based visualization tool for single-cell experiment data, including spatial data from multiple modalities and scatterplot data from arbitrary dimensionality reduction methods.
+Vitessce (\url{http://vitessce.io}) is a web-based visualization tool for single-cell experiment data, including spatial data from multiple modalities and scatterplot data from arbitrary dimensionality reduction methods.
 Visualizations in Vitessce are interactive, with customizable zoom levels, viewer sizes, tooltips, and color encodings.
 To display spatial data, including cells and molecules, Vitessce leverages performant geospatial web technologies.
 Visualizations within Vitessce have been developed as modular components intended to make them reusable by external applications that require specific functionality provided by Vitessce but focused on different domains or goals.
@@ -75,10 +75,11 @@ This was my first time reporting bugs in open source software and interacting wi
 % Cell set management (and set management in general, with independent utility functions)
 Once cell sets have been selected, either via one of the selection tools or as a representation of members of clusters resulting from a clustering algorithm, it is useful to be able to organize and update them.
 The second main focus of my summer was building a cell set management component to enable users to organize cell sets.
-While the development of this component was implemented with cell sets in mind, the component is not specific to cells, and supports sets of any type of item, for example genes or molecules.
+While this component motivated by cell sets, organization of sets is important for other types of items, so the component was developed at an abstract level to support other set types, for instance genes or molecules.
 
 % Cell set manager mock ups
-
+Prior to writing any code for the set management component, I first created UI mockups in Sketch, a UI design and prototyping application, in order to get feedback regarding the features and layout that the component would support.
+Through this process, we aimed to get clarification about the desired interactions or workflow for managing cell sets, which was successful prompted me to develop the component based on the agreed-upon mockup.
 
 % Cell set manager iteration 1: flat
 The first iteration of the cell set component allowed users to store sets resulting from interactions with the rectangle and polygon selection tools.
