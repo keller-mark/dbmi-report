@@ -57,7 +57,7 @@ Tools for static visualization of single-cell data are also popular, with use ca
 % Drawbacks of existing tools
 Many of these existing tools focus on a particular aspect of single-cell data visualization, but none supports the multi-view linked spatial, scatterplot, and heatmap views that Vitessce supports.
 Additionally, the interfaces of tools like Single Cell Viewer are not user-friendly, requiring users to scroll and change pages many times to view different aspects of their data.
-Vitessce focuses on user experience to allow customization and arbitrary simultaneous views of data, while also recognizing that certain use cases may be out of scope and better accommodated by individual Vitessce components.
+Vitessce focuses on user experience to allow customization and arbitrary simultaneous views of data, while also recognizing that certain use cases may be out of scope and better accommodated by individual Vitessce components rather than the app as a whole.
 
 \subsection{Contributions}
 My work this summer focused on implementing features to support cell selection, cell set management, and linked plot hover events, as well as fixing miscellaneous bugs and ``tech debt''.
@@ -109,7 +109,7 @@ For example, if the clusters discovered by a particular clustering algorithm are
 % Cell set manager tabs
 Within the cell set manager, I also implemented a tab interface to ease the management of deeply nested tree nodes.
 From the view menu of a tree node, there is an option to open the node as a new tab, in which the children of the node of interest are displayed as the top level of the hierarchy, simplifying the interface.
-These tabs act like web browser tabs that a user would expect, and be viewed and closed in the same way.
+These tabs act like web browser tabs that a user would expect, and can be viewed and closed in the same way.
 
 % Set operations
 It is useful to be able to derive new sets from the existing sets that may have been the result of a selection interaction or a clustering algorithm.
@@ -139,7 +139,7 @@ React hooks can make code more readable by allowing code blocks corresponding to
 I migrated our code for styling Vitessce from CSS to Sass (\url{http://sass-lang.com}), allowing us to leverage CSS preprocessing for nesting styles, computed variables, and style reuse via mixins.
 % - More tests
 In the development of the cell set manager, I wrote unit tests for each of its functions, as well as tests for the import/export schema validation.
-These updates are invisible to Vitessce users but will help future developers to add or update functionality in Vitessce.
+These updates are invisible to Vitessce users but will help future developers to easily understand, add, and update functionality in Vitessce.
 
 \section{Methods}
 % Web-based tools and React
