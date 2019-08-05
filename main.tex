@@ -32,7 +32,6 @@ The NIH-sponsored Human BioMolecular Atlas Program (HuBMAP) is using this model 
 HuBMAP aims to develop spatial mappings of cells and molecules, with new coordinate frameworks that allow querying across levels, from organ to tissue to cell to molecule.
 Learning from the struggles of past biomedical and genomic data collection efforts that have developed data portals and visualization tools as afterthoughts, HuBMAP was conceived with the HuBMAP Integration, Visualization, and Engagement (HIVE) group responsible for articulating data access needs from the start~\cite{snyder2019mapping}.
 
-
 % Need for visualization
 Visualization of 2D embeddings of cells can facilitate identification of distinct cell populations that group into clusters or subclusters~\cite{wang2017visualization,staahl2016visualization}.
 However, such embeddings are dependent on the dimensionality reduction method employed and its parameters.
@@ -50,13 +49,15 @@ Visualizations within Vitessce have been developed as modular components intende
 \subsection{Related work}
 % Existing visualizations tools and browsers
 The development of web-based visualization tools for spatial single cell transcriptomics is currently very active, in both open- and closed-source models.
-Existing open-source and academic tools include Pagoda2~\cite{lake2018integrative}, UCSC Cell Browser~\cite{nowakowski2017spatiotemporal}, the Single Cell Viewer (SCV)~\cite{wang2019single}, SCope~\cite{wouters2019single}, Giotto~\cite{dries2019giotto}, Blue Brain Cell Atlas~\cite{ero2019cell}, and the Allen Cell Explorer (\url{http://allencell.org}).
+Existing open-source and academic tools include Pagoda2~\cite{lake2018integrative}, UCSC Cell Browser~\cite{nowakowski2017spatiotemporal}, the Single Cell Viewer~\cite{wang2019single}, SCope~\cite{wouters2019single}, Giotto~\cite{dries2019giotto}, Blue Brain Cell Atlas~\cite{ero2019cell}, and the Allen Cell Explorer (\url{http://allencell.org}).
 Several commercial tools are available or have been announced, including those from 10x Genomics and BioTuring.
-
 % Existing "static" visualizations in publications
+Tools for static visualization of single-cell data are also popular, with use cases including creating publication-ready figures or fitting into traditional analysis workflows.
 
 % Drawbacks of existing tools
-
+Many of these existing tools focus on a particular aspect of single-cell data visualization, but none supports the multi-view linked spatial, scatterplot, and heatmap views that Vitessce supports.
+Additionally, the interfaces of tools like Single Cell Viewer are not user-friendly, requiring users to scroll and change pages many times to view different aspects of their data.
+Vitessce focuses on user experience to allow customization and arbitrary simultaneous views of data, while also recognizing that certain use cases may be out of scope and better accommodated by individual Vitessce components.
 
 \subsection{Contributions}
 My work this summer focused on implementing features to support cell selection, cell set management, and linked plot hover events, as well as fixing miscellaneous bugs and ``tech debt''.
@@ -87,7 +88,7 @@ This required developing a simple JSON schema to which the imported and exported
 While the first iteration of the cell set manager component was useful, through our evaluation of its functionality, we realized that it would be necessary to allow hierarchical organization of sets.
 A hierarchy can support organization of sets and subsets, particularly those representing clusters and subclusters at multiple levels of nesting.
 This prompted a second iteration of the component, mostly rewriting the code but learning from the flat first implementation.
-To display the tree of sets, I explored multiple open source JavaScript UI libraries containing tree layout components: \texttt{ant-design} (\url{http://ant.design/components/tree}), \texttt{blueprint} (\url{http://blueprintjs.com/docs/#core/components/tree}), \texttt{atlaskit tree} (\url{http://atlaskit.atlassian.com/packages/core/tree}).
+To display the tree of sets, I explored multiple open source JavaScript UI libraries containing tree layout components: \texttt{ant-design} (\url{http://ant.design}), \texttt{blueprint} (\url{http://blueprintjs.com}), \texttt{atlaskit tree} (\url{http://atlaskit.atlassian.com}).
 I ultimately chose to use \texttt{ant-design} because it was the only tree component supporting checking and dragging tree nodes.
 As a bonus, the library comes with additional UI components including tabs and popups, and is widely used so will likely continue to be supported for an extended period of time.
 
@@ -95,13 +96,24 @@ In developing the hierarchical cell set manager, I first developed tree and tree
 Then, I added UI features that were present in the flat cell set manager, including renaming and deleting sets.
 Next, I connected the dragging functionality provided by the tree component to the internal tree representation.
 I implemented updated import and export functionalities supporting the hierarchical representation of sets, requiring me to modify the flat import/export JSON schema.
+To allow coloring of sets, I added a color picker to each tree node, triggering an event which updates the scatterplot and spatial plots upon change.
+
+Cell sets can be viewed using a ``view'' popup menu and choosing the current set or a particular level of its descendants.
+This menu is dynamic to accommodate tree nodes at different levels.
+These view options allow multiple cell sets at the same level of the hierarchy to be viewed simultaneously, distinguished by their differing colors.
+For example, if the clusters discovered by a particular clustering algorithm are stored under the same parent node, the visualization of all clusters can be done by selecting the parent node and choosing to view the 1st level descendants.
 
 % Cell set manager tabs
+Within the cell set manager, I also implemented a tab interface to ease the management of deeply nested tree nodes.
+From the view menu of a tree node, there is an option to open the node as a new tab, in which the children of the node of interest are displayed as the top level of the hierarchy, simplifying the interface.
+These tabs act like web browser tabs that a user would expect, and be viewed and closed in the same way.
 
 % Set operations
-
-
-
+It is useful to be able to derive new sets from the existing sets that may have been the result of a selection interaction or a clustering algorithm.
+Another part of the cell set manager component that I implemented this summer is the set operations interface.
+This interface supports taking unions, intersections, and complements that become new sets.
+One example of the usage of these operations in the context of cell sets would be to manually create a new set of all neurons from multiple sets representing different neuron types.
+These operations can be performed on multiple operands by using the checkboxes corresponding to each tree node.
 
 % Linked hover
 I added support for linked cursor hover events across plots to be able to show contextual information when a user hovers on a particular cell.
@@ -116,8 +128,15 @@ To ensure that tooltips do not overflow a particular plot component's boundaries
 
 % Tech debt
 % - React hooks
+Along with the development of individual features for Vitessce, I also helped to reduce tech debt and streamline some aspects of the code base.
+This included adhering to the recent additions to the React library documentation regarding the implementation of new components as JavaScript functions rather than JavaScript classes.
+However, because pure JavaScript functions do not allow for the storage of component state variables (as classes do), to ``hook into'' React's state functionality, usage of additional functions called ``hooks'' is necessary.
+React hooks can make code more readable by allowing code blocks corresponding to a particular task to be grouped together, while in class-based components required separation of code based on component lifecycle events.
 % - CSS -> SCSS
+I migrated our code for styling Vitessce from CSS to Sass (\url{http://sass-lang.com}), allowing us to leverage CSS preprocessing for nesting styles, computed variables, and style re-use via mixins.
 % - More tests
+In the development of the cell set manager, I wrote unit tests for each of its functions, as well as tests for the import/export schema validation.
+These updates will help future developers to add or update functionality in Vitessce.
 
 \section{Methods}
 % Web-based tools and React
