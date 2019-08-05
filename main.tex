@@ -130,6 +130,10 @@ A tooltip is a message positioned near the mouse in a graphical user interface.
 In the context of Vitessce, tooltips may contain a cell's ID or list the names of the clusters and subclusters to which it belongs.
 To ensure that tooltips do not overflow a particular plot component's boundaries, I implemented collision detection to be able to flip the position of a tooltip relative to the cursor when approaching the edge of a plot.
 
+My implementation of tooltips and hover emphasis markings was done by rendering contextual elements in the DOM rather than in a visualization layer directly, both performance reasons and to keep the visualization clean to in preparation for potential downloading.
+To synchronize HTML element positions with positions of data points in visualization layers, we perform projections from the data coordinate space to the browser coordinate space.
+This approach also follows the decoupling paradigms followed throughout Vitessce, making the extra elements modular and composable.
+
 % Tech debt
 % - React hooks
 Along with the development of individual features for Vitessce, I also helped to reduce tech debt and streamline some aspects of the code base.
@@ -142,8 +146,18 @@ I migrated our code for styling Vitessce from CSS to Sass (\url{http://sass-lang
 In the development of the cell set manager, I wrote unit tests for each of its functions, as well as tests for the import/export schema validation.
 These updates are invisible to Vitessce users but will help future developers to easily understand, add, and update functionality in Vitessce.
 
-\section{Methods}
+\section{Discussion}
+It has been a fun experience to spend the summer immersed in a lab focused more on methods and infrastructure development than hypothesis-based research.
+While I enjoy traditional software development, visualization research software and infrastructure development is particularly exciting to me, as it moves fast and serves as a critical part of the translational, educational, and exploratory functions of research.
+The field of life sciences research software development is currently struggling with the problems of reproducibility~\cite{gruning2018practical} and long-term maintenance~\cite{belmann2015bioboxes}, issues important to the adoption of such software.
+% Adoption of software development industry techniques in research
+Software development practices in academia seem to lag far behind those in industry, possibly due to differences in incentives.
+For instance, the concept of ``continuous integration'' has existed since 1991, yet articles as recently as 2017 were still treating it as a foreign concept to life sciences researchers~\cite{booch1991object,beaulieu2017reproducibility}.
+Continuous integration and testing require more time and effort up front but prevent software from regressing and decrease the cognitive overhead for maintenance later.
+It is promising that projects like Vitessce, HiGlass~\cite{kerpedjiev2018higlass}, and others in the lab are committed to these best practices.
+
 % Web-based tools and React
+Vitessce adopts both general UI technologies and specific geospatial technologies for the single-cell visualization domain.
 While end users typically do not need to think about the particular technology used to implement a visualization tool, it is something I thought about this summer.
 Web technologies currently provide a good balance of accessibility, performance, and development experience for visualization, and will continue to do so in the near future.
 Web browsers support time-tested visualization technologies such as SVG, WebGL, and the canvas element, while improving the development experience with recent standards like WebAssembly and modern JavaScript language features.
@@ -156,16 +170,14 @@ Vitessce performs spatial visualization by leveraging libraries developed with a
 The open source Uber-maintained Deck.gl JavaScript library is powerful because it implements reactive updates that are similar to those used by React.
 Deck.gl performs diffing on the data passed to each view layer to detect updates and invalidate the current state, just as React performs diffing on the virtual DOM in response to data changes to determine when to update the browser's DOM.
 
-Often, it makes sense to render contextual elements in the DOM rather than in a visualization layer, whether for performance reasons or to keep the visualization clean to in preparation for downloading.
-To synchronize HTML element positions with positions of data points in visualization layers, we perform projections from the data coordinate space to the browser coordinate space.
-This is how I chose to implement the cell-hover emphasis and tooltip functionalities.
-
 % Component re-use
 The development of Vitessce has focused on separating logic into components that can operate independently to enable them to be imported and re-used by other projects, including HuBMAP data portals and tissue viewers.
 To achieve this goal, Vitessce does not maintain a global state that is used by child components.
 Instead, there is an event-based mechanism, with wrapper subscriber components that pass state down to children along with publisher update functions.
 This allows external usage of components to be done by setting up custom publishing and subscription wrappers rather than using the Vitessce-specific wrappers.
 A drawback of this approach is that events are asynchronous, so implementing a history mechanism may prove to be difficult, as there is no one source of truth for events.
+
+% Packaging CSS/JS for distribution on npm
 
 \section{Conclusions}
 % Brief summary
