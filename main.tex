@@ -144,7 +144,13 @@ React hooks can make code more readable by allowing code blocks corresponding to
 I migrated our code for styling Vitessce from CSS to Sass (\url{http://sass-lang.com}), allowing us to leverage CSS preprocessing for nesting styles, computed variables, and style reuse via mixins.
 % - More tests
 In the development of the cell set manager, I wrote unit tests for each of its functions, as well as tests for the import/export schema validation.
+% - Protobuf
+My final task for the summer was exploring a data serialization tool called Protobuf (\url{http://developers.google.com/protocol-buffers}) developed by Google for data input and output in a language-agnostic way.
+Improved serialization and compression could improve loading times of large datasets in Vitessce.
+The first part of this exploration process entailed creating a small pipeline to make a full trip: from a Protobuf schema to a Python data structure to a serialized data structure sent the browser to be decoded into a JSON data structure.
+
 These updates are invisible to Vitessce users but will help future developers to easily understand, add, and update functionality in Vitessce.
+
 
 \section{Discussion}
 It has been a fun experience to spend the summer immersed in a lab focused more on methods and infrastructure development than hypothesis-based research.
@@ -178,6 +184,10 @@ This allows external usage of components to be done by setting up custom publish
 A drawback of this approach is that events are asynchronous, so implementing a history mechanism may prove to be difficult, as there is no one source of truth for events.
 
 % Packaging CSS/JS for distribution on npm
+To help others to adopt open source software, packaging and distribution are important to think about.
+In the case of the Vitessce components, we transpile the JavaScript code and distribute it on NPM.
+The CSS code for styling the components must also be shared along with the JavaScript code.
+Because of my work transitioning to a more modular styling system using SCSS files, we can distribute modular stylesheets for users that are using only a specific component or a small set of components.
 
 \section{Conclusions}
 % Brief summary
