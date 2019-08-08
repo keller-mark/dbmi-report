@@ -5,7 +5,6 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{wrapfig}
-
 \usepackage{hyperref}
 
 \title{HMS Summer Institute in Biomedical Informatics}
@@ -92,7 +91,7 @@ This required developing a simple JSON schema to which the imported and exported
 While the first iteration of the cell set manager component was useful, through our evaluation of its functionality, we realized that it would be necessary to allow hierarchical organization of sets.
 A hierarchy can support organization of sets and subsets, particularly those representing clusters and subclusters at multiple levels of nesting.
 This prompted a second iteration of the component, mostly rewriting the code but learning from the flat first implementation.
-To display the tree of sets, I explored multiple open source JavaScript UI libraries containing tree layout components: \texttt{ant-design} \footnote{\url{https://ant.design/components/tree/}}, \texttt{blueprint} \footnote{\url{https://blueprintjs.com/docs/#core/components/tree}}, \texttt{atlaskit tree} \footnote{\url{https://atlaskit.atlassian.com/packages/core/tree}}.
+To display the tree of sets, I explored multiple open source JavaScript UI libraries containing tree layout components: \texttt{ant-design} \footnote{\url{https://ant.design/components/tree/}}, \texttt{blueprint} \footnote{\url{https://blueprintjs.com/docs/\#core/components/tree}}, \texttt{atlaskit tree} \footnote{\url{https://atlaskit.atlassian.com/packages/core/tree}}.
 I ultimately chose to use \texttt{ant-design} because it was the only tree component supporting checking and dragging tree nodes.
 As a bonus, the library comes with additional UI components including tabs and popups, and is widely used so will likely continue to be supported for an extended period of time.
 
