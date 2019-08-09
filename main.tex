@@ -35,7 +35,7 @@ Learning from the struggles of past biomedical and genomic data collection effor
 Visualization of 2D embeddings of cells can facilitate identification of distinct cell populations that group into clusters or subclusters~\cite{wang2017visualization,staahl2016visualization}.
 However, such embeddings are dependent on the dimensionality reduction method employed and its parameters.
 Often, multiple dimensionality reduction methods are compared, including PCA, t-SNE, and UMAP~\cite{ovchinnikova2019exploring,becht2019dimensionality}.
-Technologies that quantify gene expression may also preserve spatial information, for example RNA flourescence \textit{in situ} hybridization (FISH).
+Technologies that quantify gene expression may also preserve spatial information, for example RNA florescence \textit{in situ} hybridization (FISH).
 In some tissues, it is likely that cells located close to each other are of the same type~\cite{stegle2015computational}.
 Spatial information can be visualized as images or as points in a spatial coordinate system, or overlapping layers of different data types aligned to the same coordinate system.
 
@@ -96,15 +96,18 @@ I ultimately chose to use \texttt{ant-design} because it was the only tree compo
 As a bonus, the library comes with additional UI components including tabs and popups, and is widely used so will likely continue to be supported for an extended period of time.
 
 In developing the hierarchical cell set manager, I first developed tree and tree node utilities in JavaScript to serve as the internal representation of the hierarchy of sets.
-Then, I added UI features that were present in the flat cell set manager, including renaming and deleting sets.
-Next, I connected the dragging functionality provided by the tree component to the internal tree representation.
-I implemented updated import and export functionalities supporting the hierarchical representation of sets, requiring me to modify the flat import/export JSON schema.
+I added UI features that were present in the flat cell set manager, including renaming and deleting sets, and connected the dragging functionality provided by the tree component to the internal tree representation.
 To allow coloring of sets, I added a color picker to each tree node, triggering an event which updates the scatterplot and spatial plots upon color change.
-
 Cell sets can be viewed using a ``view'' popup menu and choosing the current set or a particular level of its descendants.
 This menu is dynamic to accommodate tree nodes at different levels.
 These view options allow multiple cell sets at the same level of the hierarchy to be viewed simultaneously, distinguished by their differing colors.
 For example, if the clusters discovered by a particular clustering algorithm are stored under the same parent node, the visualization of all clusters can be done by selecting the parent node and choosing to view the 1st level descendants.
+
+% Cell set manager tabular import/export
+I implemented updated import and export functionalities supporting the hierarchical representation of sets, requiring me to modify the flat import/export JSON schema.
+Another request we received to make the importing and exporting more user-friendly was to add support for a tabular file format in addition to the JSON format.
+I defined a tabular format that encodes the hierarchy implicitly and uses the concept of tidy data to define cells by rows and set attributes as column values~\cite{wickham2014tidy}.
+Tabular files are more straightforward for researchers without computational experience, as they can be created in spreadsheet software or with built-in R functions.
 
 % Cell set manager tabs
 Within the cell set manager, I also implemented a tab interface to ease the management of deeply nested tree nodes.
