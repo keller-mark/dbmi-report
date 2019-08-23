@@ -192,10 +192,14 @@ The CSS code for styling the components must also be shared along with the JavaS
 Because of my work transitioning to a more modular styling system using SCSS files, we can distribute modular stylesheets for users that are using only a specific component or a small set of components.
 
 \section{Conclusions}
-% Brief summary
-Conclusions here...
-
 % Questions that Vitessce can potentially answer
+It is hypothesized that analysis of single cell data in healthy human tissue will provide insights into the mechanisms of cell differentiation and other cellular processes.
+Better understandings of mechanisms at the cellular level and beyond will impact diagnosis and treatment of human disease, for example by informing testing procedures or drug development efforts.
+% Brief summary
+New capabilities are being implemented in Vitessce at the same time as new single cell spatial transcriptomics data sources and data types are becoming available.
+Vitessce will make exploration of single cell data across different embeddings and visualization approaches accessible to both the casual and seasoned analyst of single cell data.
+Accessibility will come not only through the availability of the web, but also through the user-centered feature development process, enabled by constant feedback from experts in general biomedical visualization and single cell data analysis.
+Its positioning within the scope of HuBMAP will enforce the adoption of current data and visualization standards, and will provide the resources to define new standards where applicable.
 
 % Future directions
 % - more customization options
@@ -203,6 +207,13 @@ Conclusions here...
 % - database for cell sets
 % - image processing pipeline
 % - more interactive heatmap
+Features planned for the next phase of development on Vitessce involve user interface customization and image processing.
+To allow users to return to the layout configuration of a previous browser session, layout settings need to be persisted to the local browser storage and loaded upon visiting the web application.
+Besides layout, making other customization options available to the user such as enabling and disabling visibility of tooltips and persisting these choices will be important.
+Refinement of the image processing pipeline is another planned development focus, during which support for additional file types and multi-channel images will be added.
+Experiments with other image viewers and tiling methods, including HiGlass~\cite{kerpedjiev2018higlass}, are planned to ensure that the optimal viewing method is employed.
+Further interactivity features are planned, including implementation of cell and gene selections via the heatmap component to complement those already available in the spatial and scatterplot components.
+
 
 \subsection{Reflection}
 
@@ -213,6 +224,7 @@ Conclusions here...
 % - grad school application process
 
 \subsection*{Acknowledgements}
+I am grateful to the Summer Institute and the Gehlenborg Lab for welcoming me this summer, and especially to Chuck for mentorship regarding development of Vitessce and to Dr. Gehlenborg for mentorship regarding Vitessce as well as visualization research in general and the graduate school application process.
 
 
 \bibliography{main}{}
