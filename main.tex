@@ -119,7 +119,7 @@ These operations can be performed on multiple operands by using the checkboxes c
 
 % Linked hover
 I added support for linked cursor hover events across plots to be able to show contextual information when a user hovers on a particular cell.
-On plots peripheral to the currently-hovered plot, emphasis will be placed on the cell over which the cursor rests in the hovered plot.
+On plots peripheral to the currently-hovered plot, emphasis is placed on the cell over which the cursor rests in the hovered plot.
 This allows a user to quickly identify the location of a particular cell across the different visualizations: scatterplots, spatial views, and gene expression heatmaps.
 
 % Tooltips
@@ -128,9 +128,9 @@ A tooltip is a message positioned near the mouse in a graphical user interface.
 In the context of Vitessce, tooltips may contain a cell's ID or list the names of the clusters and subclusters to which it belongs.
 To ensure that tooltips do not overflow a particular plot component's boundaries, I implemented collision detection to be able to flip the position of a tooltip relative to the cursor when approaching the edge of a plot.
 
-My implementation of tooltips and hover emphasis markings was done by rendering contextual elements in the DOM rather than in a visualization layer directly, both performance reasons and to keep the visualization clean to in preparation for potential downloading.
+My implementation of tooltips and hover emphasis markings was done by rendering contextual elements in the DOM rather than in a visualization layer directly, both for performance reasons and to keep the visualization clean to in preparation for potential downloading.
 To synchronize HTML element positions with positions of data points in visualization layers, we perform projections from the data coordinate space to the browser coordinate space.
-This approach also follows the decoupling paradigms followed throughout Vitessce, making the extra elements modular and composable.
+This approach also follows the decoupling paradigms found throughout Vitessce, making the extra elements modular and composable.
 
 % Tech debt
 % - React hooks
