@@ -89,7 +89,7 @@ A hierarchy can support organization of sets and subsets, particularly those rep
 This prompted a second iteration of the component, mostly rewriting the code but learning from the flat first implementation.
 To display the tree of sets, I explored multiple open source JavaScript UI libraries containing tree layout components: \texttt{ant-design} \footnote{\url{https://ant.design/components/tree/}}, \texttt{blueprint} \footnote{\url{https://blueprintjs.com/docs/\#core/components/tree}}, \texttt{atlaskit tree} \footnote{\url{https://atlaskit.atlassian.com/packages/core/tree}}.
 I ultimately chose to use \texttt{ant-design} because it was the only tree component supporting checking and dragging tree nodes.
-As a bonus, the library comes with additional UI components including tabs and popups, and is widely used so will likely continue to be supported for an extended period of time.
+As a bonus, the library comes with additional UI components including tabs and popups, and is widely used, so it will likely continue to be supported for an extended period of time.
 
 In developing the hierarchical cell set manager, I first developed tree and tree node utilities in JavaScript to serve as the internal representation of the hierarchy of sets.
 I added UI features that were present in the flat cell set manager, including renaming and deleting sets, and connected the dragging functionality provided by the tree component to the internal tree representation.
