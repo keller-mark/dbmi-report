@@ -135,7 +135,8 @@ This approach also follows the decoupling paradigms found throughout Vitessce, m
 % Tech debt
 % - React hooks
 Along with the development of individual features for Vitessce, I also helped to reduce tech debt and streamline some aspects of the code base.
-This included adhering to the recent additions to the React library documentation regarding the implementation of new components as JavaScript functions rather than JavaScript classes.
+Vitessce is implemented using the React \footnote{\url{https://reactjs.org}} JavaScript library which simplifies the development of modular, component-based web applications.
+React-related tech debt reduction included adhering to the recent additions to the React library documentation regarding the implementation of new components as JavaScript functions rather than JavaScript classes \footnote{\url{https://reactjs.org/docs/hooks-intro.html}}.
 However, because pure JavaScript functions do not allow for the storage of component state variables (as classes do), to ``hook into'' React's state functionality, usage of additional functions called ``hooks'' is necessary.
 React hooks can make code more readable by allowing code blocks corresponding to a particular task to be grouped together, while class-based components require separation of code based on component lifecycle events.
 % - CSS -> SCSS
@@ -165,8 +166,6 @@ While end users typically do not need to think about the particular technology u
 Web technologies currently provide a good balance of accessibility, performance, and development experience for visualization, and will continue to do so in the near future.
 Web browsers support time-tested visualization technologies such as SVG, WebGL, and the canvas element, while improving the development experience with recent standards like WebAssembly and modern JavaScript language features.
 The community around open-source JavaScript libraries is large and very active.
-Vitessce is implemented using the React JavaScript framework originally developed for Facebook but now distributed as open source \footnote{\url{https://reactjs.org}}.
-React is a framework that simplifies the development of modular, component-based web applications.
 
 % Cartographic technologies
 Vitessce performs spatial visualization by leveraging libraries developed with a focus on cartography and mapping.
