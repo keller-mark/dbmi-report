@@ -146,7 +146,6 @@ In the development of the cell set manager, I wrote unit tests for each of its f
 My final task for the summer was exploring a data serialization tool called Protobuf \footnote{\url{http://developers.google.com/protocol-buffers}} developed by Google for data input and output in a language-agnostic way.
 Improved serialization and compression could improve loading times of large datasets in Vitessce.
 The first part of this exploration process entailed creating a small pipeline to make a full trip: from a Protobuf schema to a Python data structure to a serialized data structure sent the browser to be decoded into a JSON data structure.
-
 These updates are invisible to Vitessce users but will help future developers to easily understand, add, and update functionality in Vitessce.
 
 
@@ -187,16 +186,6 @@ In the case of the Vitessce components, we transpile the JavaScript code and dis
 The CSS code for styling the components must also be shared along with the JavaScript code.
 Because of my work transitioning to a more modular styling system using SCSS files, we can distribute modular stylesheets for users that are using only a specific component or a small set of components.
 
-\section{Conclusions}
-% Questions that Vitessce can potentially answer
-Analysis of single cell data in healthy human tissue provides insights into the mechanisms of cell differentiation and other cellular processes.
-Better understandings of mechanisms at the cellular level and beyond will impact diagnosis and treatment of human disease, for example by informing testing procedures or drug development efforts.
-% Brief summary
-New capabilities are being implemented in Vitessce at the same time as new single cell spatial transcriptomics data sources and data types are becoming available.
-Vitessce will make exploration of single cell data across different embeddings and visualization approaches accessible to both the casual and seasoned analyst of single cell data.
-Accessibility will come not only through the availability of the web, but also through the user-centered feature development process, enabled by constant feedback from experts in general biomedical visualization and single cell data analysis.
-Its positioning within the scope of HuBMAP will enforce the adoption of current data and visualization standards, and will provide the resources to define new standards where applicable.
-
 % Future directions
 % - more customization options
 % - layout preferences persistence
@@ -211,13 +200,37 @@ Experiments with other image viewers and tiling methods, including HiGlass~\cite
 Further interactivity features are planned, including implementation of cell and gene selections via the heatmap component to complement those already available in the spatial and scatterplot components.
 Vitessce stakeholders will continue to provide input about development priorities and directions to obtain maximal utility and quickly begin to incorporate Vitessce into workflows and data portals.
 
-\subsection{Reflection}
 
+\section{Conclusions}
+% Questions that Vitessce can potentially answer
+Analysis of single cell data in healthy human tissue provides insights into the mechanisms of cell differentiation and other cellular processes.
+Better understandings of mechanisms at the cellular level and beyond will impact diagnosis and treatment of human disease, for example by informing testing procedures or drug development efforts.
+% Brief summary
+New capabilities are being implemented in Vitessce at the same time as new single cell spatial transcriptomics data sources and data types are becoming available.
+Vitessce will make exploration of single cell data across different embeddings and visualization approaches accessible to both the casual and seasoned analyst of single cell data.
+Accessibility will come not only through the availability of the web, but also through the user-centered feature development process, enabled by constant feedback from experts in general biomedical visualization and single cell data analysis.
+Its positioning within the scope of HuBMAP will enforce the adoption of current data and visualization standards, and will provide the resources to define new standards where applicable.
+
+\subsection{Reflection}
 % What I got out of this summer
 % - HuBMAP conference experience
 % - more team-based research and software development
 % - a focus on visualization
 % - grad school application process
+This summer I was fortunate to learn from experts in biomedical informatics and numerous tangential fields.
+One highlight of my summer was attending the HuBMAP conference held at HMS on June 27th and 28th and meeting researchers from other institutions who are focused on different aspects of the project.
+Discussions about the developments of coordinate frameworks for organs compared multiple interesting approaches such as lung mapping using airway branching points identified via neural networks versus using silhouette and shape via Poisson distance maps.
+Furthermore, this conference experience demonstrated the strengths of cross-institution collaboration, as labs at each have different expertise, and within the development of visualization tools, we were able to identify places for code reuse across tools, preventing duplicate development efforts.
+For example, multiple tools and data portals will need to include a tissue viewer, which can be developed once and imported by multiple projects if designed at the appropriate level of abstraction.
+
+Another valuable part of working on Vitessce was being able to collaborate with talented software developers in the lab who provided valuable feedback regarding my contributed code.
+I also gained more experience responding to this feedback and evaluating the code of others.
+Weekly lab-wide development meetings aided in this process and served as a place to air any general code-related questions.
+
+From the weekly Summer Institute lectures, my understanding of potential research areas, work-life balance outcomes, and the graduate school application process became substantially clearer.
+I had a limited grasp on the research questions in biomedical informatics prior to this summer, but the wide range of research interests represented by lecturers has expanded my view of the field dramatically.
+The opportunity to hear professors and physician scientists at different career stages discuss work-life balance and their career journeys illuminated the diverse range of lifestyles possible as a professional with expertise in the realm of biomedical informatics.
+
 
 \subsection*{Acknowledgements}
 I am grateful to the Summer Institute and the Gehlenborg Lab for welcoming me this summer, and especially to Chuck for mentorship regarding Vitessce and to Dr. Gehlenborg for mentorship regarding Vitessce, visualization research in general, and the graduate school application process.
